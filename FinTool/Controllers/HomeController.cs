@@ -7,7 +7,7 @@ namespace FinTool.Controllers
 {
     public class HomeController : Controller
     {
-        private const string filepath = @"C:\Stuff\Practice\Study - FinTool\FinTool - Data Files\WSchloggs.csv";
+        private const string filepath = @"C:\Git\FinTool\FinTool.Data\Test_Colter.txt";
         private readonly ITransactionRepository transactionRepository;
         private readonly IRegExStringRepository regExStringRepository;
 

@@ -17,7 +17,7 @@ namespace FinTool.Logic
             {
                 while (!reader.EndOfStream)
                 {
-                    var tokens = reader.ReadLine().Split(',');
+                    var tokens = reader.ReadLine().Replace("\\", "").Replace("\"", "").Split(',');
                     var transaction = new Transaction()
                     {
                         Date = DateTime.Parse(tokens[0]),
