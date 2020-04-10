@@ -10,7 +10,7 @@ namespace FinTool.Data.Data
 {
     public class FinToolDbContext : DbContext, IFinToolDbContext
     {
-        public FinToolDbContext() : base("FinTool20200409T1028")
+        public FinToolDbContext() : base("FinTool20200410T208")
         {
             Database.SetInitializer<FinToolDbContext>(new FinToolDbInitializer());
         }

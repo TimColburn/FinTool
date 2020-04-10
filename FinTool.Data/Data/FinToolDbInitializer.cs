@@ -9,6 +9,10 @@ namespace FinTool.Data.Data
         {
             var regExStringRepository = new RegExStringRepository(context);
 
+            var regExStrings = regExStringRepository.GetAll();
+            if (regExStrings != null && regExStrings.Count > 0)
+                return;
+
             regExStringRepository.Create( "", "UNDEFINED");
             regExStringRepository.Create( "STATE FARM", "Auto");
             regExStringRepository.Create( "ATM WITHDRAWAL", "Misc");

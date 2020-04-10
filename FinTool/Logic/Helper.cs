@@ -128,15 +128,18 @@ namespace FinTool.Logic
             var index = 0;
             datasets = new List<object>();
             var rand = new Random();
+            var hide = true;
             foreach (var r in rows)
             {
+                hide = (rowHeaders[index] == "Auto" || rowHeaders[index] == "Misc Mortgage") ? false : true;
+
                 datasets.Add(new
                 {
                     data = r,
                     label = rowHeaders[index++],
                     borderColor = "#" + rand.Next(0, 10).ToString() + rand.Next(0, 10).ToString() + rand.Next(0, 10).ToString(),
                     fill = false,
-                    hidden = true
+                    hidden = hide
                 });
             }
             return;

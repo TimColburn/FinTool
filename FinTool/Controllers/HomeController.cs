@@ -16,7 +16,10 @@ namespace FinTool.Controllers
         {
             this.transactionRepository = transactionRepository;
             this.regExStringRepository = regExStringRepository;
-            Helper.LoadInputFiles(filepath, transactionRepository, regExStringRepository);
+
+            var transactions = transactionRepository.GetAll();
+            if (transactions.Count == 0)
+                Helper.LoadInputFiles(filepath, transactionRepository, regExStringRepository);
         }
 
 
@@ -72,16 +75,16 @@ namespace FinTool.Controllers
 
 
 
-        public ActionResult About()
+        public ActionResult Tutorial()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "The Tutorial page is coming soon!";
 
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Help()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "The Help page is coming soon!";
 
             return View();
         }

@@ -8,19 +8,19 @@
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.18/af-2.3.3/b-1.5.6/b-colvis-1.5.6/b-html5-1.5.6/b-print-1.5.6/cr-1.5.0/fc-3.2.5/fh-3.1.4/kt-2.5.0/r-2.2.2/rg-1.1.0/rr-1.2.4/sc-2.0.0/sl-1.3.0/datatables.min.js"></script>
 <script src="~/Scripts/Chart.min.js"></script>
 
-<div id="categories-chart-container" style="margin: 45px 0px;">
+<div id="categories-chart-container" style="background-color: #cee397; border: 2px solid black; padding-left: 5px;">
     <h3>CATEGORIES CHART</h3>
     <canvas id="categories-chart" width="800" height="200"></canvas>
 </div>
 
-<div id="categories-table-container" style="margin: 45px 0px;">
+<div id="categories-table-container" style="margin: 24px 0px; background-color: #f0e6aa; border: 2px solid black; padding-left: 5px;">
     <h3>CATEGORIES TABLE</h3>
     <table id="categories-table" class="table table-sm table-striped table-borederd" style="width: 100%;"></table>
 </div>
 
-<div id="transactions-table-container" style="margin: 45px 0px;">
+<div id="transactions-table-container" style="margin: 24px 0px; background-color: #aacfcf; border: 2px solid black; padding-left: 5px;">
     <h3>TRANSACTIONS TABLE</h3>
-    <table id="transactions-table" class="table table-sm table-striped table-bordered", style="width: 100%;"></table>
+    <table id="transactions-table" class="table table-sm table-striped table-bordered" , style="width: 100%;"></table>
 </div>
 
 @section scripts{
@@ -40,20 +40,9 @@
                 }
             });
 
-
             /****************\
              CATEGORIES CHART
             \****************/
-            //var categories_chart_labels = null;
-            //var categories_chart_datasets = null;
-
-            //$.ajax({
-            //    url: "/Home/GetCateoriesChartData", async: false, success: function (result) {
-            //        categories_chart_labels = result.labels;
-            //        categories_chart_datasets = result.datasets;
-            //    }
-            //});
-
             new Chart(document.getElementById("categories-chart"), {
                 type: 'line',
                 data: {
@@ -64,20 +53,9 @@
                 }
             });
 
-
             /****************\
              CATEGORIES TABLE
             \****************/
-            //var rowHeaders = null;
-            //var columnHeaders = null;
-
-            //$.ajax({
-            //    url: "/Home/GetCategoriesTableHeaders", async: false, success: function (result) {
-            //        columnHeaders = result.columnHeaders;
-            //        rowHeaders = result.rowHeaders;
-            //    }
-            //});
-
             var categoriesTable = $('#categories-table').DataTable({
                 ajax: {
                     url: "/Home/GetCategoriesTableData",
@@ -122,7 +100,7 @@
                     }
                 ]
             });
-            
+
             /******************\
              TRANSACTIONS TABLE
             \******************/
@@ -173,7 +151,7 @@
                     }
                 ]
             });
-            
+
         });
     </script>
 }
