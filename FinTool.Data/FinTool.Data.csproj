@@ -102,7 +102,7 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-    <Content Include="Test_Colter.txt" />
+    <Content Include="Test_Transactions.txt" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201912222045152_Initial.resx">

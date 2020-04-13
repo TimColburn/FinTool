@@ -32,7 +32,7 @@
             var categories_chart_datasets = null;
 
             $.ajax({
-                url: "/Home/GetData", async: false, success: function (result) {
+                url: "/Home/GetCategoriesIncludingMetaData", async: false, success: function (result) {
                     categories_chart_labels = result.labels;
                     categories_chart_datasets = result.datasets;
                     columnHeaders = result.categoryColumnHeaders;
@@ -58,7 +58,7 @@
             \****************/
             var categoriesTable = $('#categories-table').DataTable({
                 ajax: {
-                    url: "/Home/GetCategoriesTableData",
+                    url: "/Home/GetCategories",
                     dataSrc: ""
                 },
                 dom:

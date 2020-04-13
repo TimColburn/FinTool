@@ -7,7 +7,6 @@ namespace FinTool.Controllers
 {
     public class HomeController : Controller
     {
-        private const string filepath = @"C:\Git\FinTool\FinTool.Data\Test_Colter.txt";
         private readonly ITransactionRepository transactionRepository;
         private readonly IRegExStringRepository regExStringRepository;
 
@@ -17,18 +16,20 @@ namespace FinTool.Controllers
             this.transactionRepository = transactionRepository;
             this.regExStringRepository = regExStringRepository;
 
-            var transactions = transactionRepository.GetAll();
-            if (transactions.Count == 0)
-                Helper.LoadInputFiles(filepath, transactionRepository, regExStringRepository);
+            // load transaction data file into the database if needed
+            if (transactionRepository.GetAll().Count == 0)
+                Helper.LoadInputFile(transactionRepository, regExStringRepository);
         }
 
 
+        [HttpGet]
         public ActionResult Index()
         {
             return View();
         }
 
 
+        [HttpGet]
         public ActionResult GetTransactions()
         {
             var transactions = transactionRepository.GetAll();
@@ -36,33 +37,16 @@ namespace FinTool.Controllers
         }
 
 
-        public ActionResult GetCategoriesTableHeaders()
-        {
-            CategoriesTableHelper.GetHeaders(transactionRepository, out List<object> columnHeaders, out List<string> rowHeaders);
-            var headers = new { columnHeaders, rowHeaders };
-            return Json(headers, JsonRequestBehavior.AllowGet);
-        }
-
-
-        public ActionResult GetCategoriesTableData()
+        [HttpGet]
+        public ActionResult GetCategories()
         {
             CategoriesTableHelper.GetData(transactionRepository, out List<object> columns, out List<List<decimal>> data);
             return Json(data, JsonRequestBehavior.AllowGet);
         }
 
 
-        public ActionResult GetCateoriesChartData()
-        {
-            CategoriesTableHelper.GetHeaders(transactionRepository, out List<object> columnHeaders, out List<string> rowHeaders);
-            CategoriesTableHelper.GetData(transactionRepository, out List<object> columns, out List<List<decimal>> data);
-
-            CategoriesChartHelper.GetData(rowHeaders, columns, data, out List<string> labels, out List<object> datasets);
-            var x = new { labels, datasets };
-            return Json(x, JsonRequestBehavior.AllowGet);
-        }
-
-
-        public ActionResult GetData()
+        [HttpGet]
+        public ActionResult GetCategoriesIncludingMetaData()
         {
             CategoriesTableHelper.GetHeaders(transactionRepository, out List<object> categoryColumnHeaders, out List<string> categoryRowHeaders);
             CategoriesTableHelper.GetData(transactionRepository, out List<object> columns, out List<List<decimal>> data);
@@ -73,18 +57,20 @@ namespace FinTool.Controllers
         }
 
 
+        [HttpGet]
         public ActionResult Tutorial()
         {
             ViewBag.Message = "The Tutorial page is coming soon!";
-
             return View();
         }
 
+
+        [HttpGet]
         public ActionResult Help()
         {
             ViewBag.Message = "The Help page is coming soon!";
-
             return View();
         }
+
     }
 }

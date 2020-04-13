@@ -37,8 +37,7 @@ namespace FinTool.Logic
 
         private static T Cast<T>(T typeHolder, Object x)
         {
-            // typeHolder above is just for compiler magic
-            // to infer the type to cast x to
+            // typeHolder above is just for compiler magic to infer the type to cast x to
             return (T)x;
         }
 
