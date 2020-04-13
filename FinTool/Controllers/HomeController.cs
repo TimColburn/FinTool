@@ -38,7 +38,7 @@ namespace FinTool.Controllers
 
         public ActionResult GetCategoriesTableHeaders()
         {
-            Helper.GetCategoriesTableHeaders(transactionRepository, out List<object> columnHeaders, out List<string> rowHeaders);
+            CategoriesTableHelper.GetHeaders(transactionRepository, out List<object> columnHeaders, out List<string> rowHeaders);
             var headers = new { columnHeaders, rowHeaders };
             return Json(headers, JsonRequestBehavior.AllowGet);
         }
@@ -46,17 +46,17 @@ namespace FinTool.Controllers
 
         public ActionResult GetCategoriesTableData()
         {
-            Helper.GetCategoriesTableData(transactionRepository, out List<object> columns, out List<List<decimal>> data);
+            CategoriesTableHelper.GetData(transactionRepository, out List<object> columns, out List<List<decimal>> data);
             return Json(data, JsonRequestBehavior.AllowGet);
         }
 
 
         public ActionResult GetCateoriesChartData()
         {
-            Helper.GetCategoriesTableHeaders(transactionRepository, out List<object> columnHeaders, out List<string> rowHeaders);
-            Helper.GetCategoriesTableData(transactionRepository, out List<object> columns, out List<List<decimal>> data);
+            CategoriesTableHelper.GetHeaders(transactionRepository, out List<object> columnHeaders, out List<string> rowHeaders);
+            CategoriesTableHelper.GetData(transactionRepository, out List<object> columns, out List<List<decimal>> data);
 
-            Helper.GetCateoriesChartData(rowHeaders, columns, data, out List<string> labels, out List<object> datasets);
+            CategoriesChartHelper.GetData(rowHeaders, columns, data, out List<string> labels, out List<object> datasets);
             var x = new { labels, datasets };
             return Json(x, JsonRequestBehavior.AllowGet);
         }
@@ -64,15 +64,13 @@ namespace FinTool.Controllers
 
         public ActionResult GetData()
         {
-            Helper.GetCategoriesTableHeaders(transactionRepository, out List<object> categoryColumnHeaders, out List<string> categoryRowHeaders);
-            Helper.GetCategoriesTableData(transactionRepository, out List<object> columns, out List<List<decimal>> data);
-            Helper.GetCateoriesChartData(categoryRowHeaders, columns, data, out List<string> labels, out List<object> datasets);
+            CategoriesTableHelper.GetHeaders(transactionRepository, out List<object> categoryColumnHeaders, out List<string> categoryRowHeaders);
+            CategoriesTableHelper.GetData(transactionRepository, out List<object> columns, out List<List<decimal>> data);
+            CategoriesChartHelper.GetData(categoryRowHeaders, columns, data, out List<string> labels, out List<object> datasets);
 
             var x = new { categoryColumnHeaders, categoryRowHeaders, columns, data, labels, datasets };
             return Json(x, JsonRequestBehavior.AllowGet);
         }
-
-
 
 
         public ActionResult Tutorial()
