@@ -1,6 +1,7 @@
 ﻿using FinTool.Data.Services;
 using FinTool.Logic;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Web.Mvc;
 
 namespace FinTool.Controllers
@@ -16,9 +17,12 @@ namespace FinTool.Controllers
             this.transactionRepository = transactionRepository;
             this.regExStringRepository = regExStringRepository;
 
+            // make sure the web.config InputFile file points to the input file
+            var inputFile = (string)ConfigurationManager.AppSettings["InputFile"];
+
             // load transaction data file into the database if needed
             if (transactionRepository.GetAll().Count == 0)
-                Helper.LoadInputFile(transactionRepository, regExStringRepository);
+                Helper.LoadInputFile(inputFile, transactionRepository, regExStringRepository);
         }
 
 

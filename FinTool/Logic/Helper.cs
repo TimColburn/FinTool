@@ -1,6 +1,7 @@
 ﻿using FinTool.Data.Models;
 using FinTool.Data.Services;
 using System;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -9,11 +10,8 @@ namespace FinTool.Logic
 {
     public class Helper
     {
-        // the file that has the transactions.  For now, this is hardcoded.
-        private const string inputFile = @"C:\Git\FinTool\FinTool.Data\Test_Transactions.txt";
-
         // loads transactions from input file into the database
-        public static void LoadInputFile(ITransactionRepository transactionRepository, IRegExStringRepository regExStringRepository)
+        public static void LoadInputFile(string inputFile, ITransactionRepository transactionRepository, IRegExStringRepository regExStringRepository)
         {
             using (var reader = new StreamReader(inputFile))
             {
@@ -31,6 +29,7 @@ namespace FinTool.Logic
                 }
             }
         }
+
 
         // get the regular expression string that finds a match to the description string
         private static RegExString GetRegExString(IRegExStringRepository regExStringRepository, string description)
