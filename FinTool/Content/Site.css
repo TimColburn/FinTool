@@ -36,4 +36,35 @@ textarea {
   background-color: #999;
 }
 
+.chart-title {
+  padding-top: 1rem;
+  padding-left: 1rem;
+  padding-bottom: 0.5rem;
+}
 
+.table-title {
+  padding-top: 1rem;
+  padding-left: 1rem;
+}
+
+.title-description {
+  color: #555;
+  font-size: 1.0rem;
+}
+
+.width-100-percent {
+  width: 100%;
+}
+
+.chart-container {
+  background-color: #cee397;
+  border: 2px solid black;
+  padding-left: 5px;
+}
+
+.table-container {
+  margin: 24px 0px;
+  background-color: #f0e6aa;
+  border: 2px solid black;
+  padding-left: 5px;
+}
